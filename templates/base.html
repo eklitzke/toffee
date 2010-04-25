@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{%block title%}toffee dns{% end %}</title>
+	<link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/combo?3.1.0/build/cssreset/reset-min.css&3.1.0/build/cssfonts/fonts-min.css"> 
+    <link rel="stylesheet" type="text/css" href="{{static_url('css/base.css')}}">
+  </head>
+  <body>
+	<div id="hd">
+	  <h1>{% block header %}toffee: dynamic dns, made simple{% end block %}</h1>
+	</div> <!-- hd -->
+	<div id="bd">
+	{% block body %}
+	{% end %}
+	</div> <!-- bd -->
+	<div id="ft">
+	  &copy; the lexicographers, {{today.year}}
+	</div> <!-- ft -->
+  </body>
+</html>

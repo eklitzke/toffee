@@ -1,0 +1,10 @@
+html { height: 100%; min-width: 450px; overflow: hidden; background-color: #232323;}
+body { font-family: sans-serif; max-width: 900px; height: 100%; color: #fff5b2; padding: 0 0 0 1em; font-size: 108%;}
+h1 { font-size: 138.5%; font-weight: bold; padding-top: 1em; color: #ffec6e; }
+h2 { font-size: 123.1%; font-weight: bold; padding-top: 1em; color: #ffec6e; }
+p { padding-top: 0.5em; }
+ul li:before { content: "\00BB \0020"; padding-left: 0.5em; }
+a { text-decoration: underline; color: #fff5b2; }
+em { font-style: italic; }
+
+#ft { font-size: 77%; padding-top: 1em;}

@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block header %}toffee: dynamic dns, made simple{% end %}
+
+{% block body %}
+<p>
+  welcome to toffee dns. we have a simple goal: we want to make it easier for people to host their own websites and services.
+</p>
+
+<h2>background</h2>
+
+<p>
+  historically, the problem of resolving dns entries to a residential ip address
+  has been solved by purchasing a static ip from your isp. you pay your isp a
+  premium, and they give you an ip address that never changes. then you tell the
+  registrar you purchased your domain name from about your ip address, and
+  everything works.
+</p>
+
+<p>
+  this all works fine, but it's increasingly difficult and expensive to get a
+  static ip address from your isp. the solution that many people today have
+  opted into is purchasing a virtual machine on a vps like slicehost, or
+  linode. this gives you the flexibility of having full control over a linux
+  machine, and also gives you a public ip address and dns. this is great, but
+  it's also expensive; typically these services cost at least $20 per year,
+  which is much more than what you probably paid your registrar for your domain
+  name.
+</p>
+
+<h2>the solution</h2>
+<p>
+  what many developers really need is a simple dns service, that will always
+  point to their home ip address, even if that address is not static. most isps
+  hand out ips based on dhcp leases that last for a very long time, typically
+  between twelve hours and a week. furthermore, your router knows all of the
+  details of this dhcp lease; this means that your router knows exactly when the
+  dhcp lease is going to expire, and when your ip address will change. if you
+  have a smart router, it will update your dynamic dns data on demand as your ip
+  address changes.
+</p>
+<p>for a dns service with a two minute ttl (toffee's default), this means
+  that your <q>downtime</q> will range from 0.28% (for a 12 hour dhcp lease) to
+  0.02% (for a one week dhcp lease).
+</p>
+
+<h2>sign up</h2>
+<p>
+  there's a $10 lifetime fee to become a member. here's what you get:
+  <ul>
+	<li>unlimited domains</li>
+	<li>one million dns resolutions per month</li>
+  </ul>
+  <br>
+  if this sounds enticing to you, <a href="/signup">sign up</a>.
+</p>
+
+<h2>technical details</h2>
+<p>
+  if you're interested in learning more about the technical details of toffee, <a href="/technical_details">click here</a> to learn more.
+</p>
+
+
+
+<!--
+<h2>about us</h2>
+<p>
+  we provide this service to developers because we want to encourage an open
+  web, where people can freely and easily put up content. the fact that
+  something like this doesn't already exist is a bit shocking, so we set out to
+  fix it.
+</p>
+-->
+{% end %}

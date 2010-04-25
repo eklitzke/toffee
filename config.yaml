@@ -1,0 +1,3 @@
+debug: true
+template_path: '/home/evan/code/toffee/templates'
+static_path: '/home/evan/code/toffee/static'
