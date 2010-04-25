@@ -1,28 +1,29 @@
 {% extends "base.html" %}
 
 {% block body %}
-<h1>toffee: technical details</h1>
+<h2>Technical Details</h2>
 <p>
-  toffee runs off of a custom dns server built using the
+  Toffee runs off of a custom DNS server built using the
   excellent <a href="http://www.monkey.org/~provos/libevent/">libevent</a>
-  non-blocking i/o library. libevent version 2 contains an api for building dns
+  non-blocking I/O library. libevent version 2 contains an API for building DNS
   servers, and that's what toffee uses.
 </p>
 
-<h2>why a custom dns server?</h2>
+<h2>Why a Custom DNS Server?</h2>
 <p>
-  the simple answer why we use a custom dns server is that it's the simplest and
-  most efficient way to provide an extremely dynamic custom dns service like
-  this. most dns servers are designed for organizations with a relatively static
-  infrastructure. programatically updating dns configuration for dns servers
-  like bind and djbdns is difficult and awkward. it frequently involves writing
-  complex scripts that generate dns databases and rsync these databases around.
+  The simple answer why we use a custom DNS server is that it's the simplest and
+  most efficient way to provide an extremely dynamic custom DNS service like
+  this. Most DNS servers are designed for organizations with a relatively static
+  infrastructure. Programatically updating DNS configuration for DNS servers
+  like BIND and djbdns is difficult and awkward. It frequently involves writing
+  complex scripts that generate dns databases and rsync these databases
+  around. We can do better than that.
 </p>
-<h2>bugs</h2>
+<h2>Bugs</h2>
 <p>
-  we take the speed, reliability, and correctness of toffee very seriously. we
+  We take the speed, reliability, and correctness of toffee very seriously. We
   commit to resolving any bugs you find in toffee immediately; at the time of
-  this writing, there are <em>no known bugs</em> in toffee. if you notice dns
+  this writing, there are <em>no known bugs</em> in toffee. If you notice DNS
   features which are not fully supported by toffee, or experience any other
   technical problems, please let us know by contacting us
   at <a href="mailto:support@toffeedns.com">support@toffeedns.com</a>.

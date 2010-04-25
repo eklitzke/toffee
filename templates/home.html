@@ -1,74 +1,66 @@
 {% extends "base.html" %}
 
-{% block header %}toffee: dynamic dns, made simple{% end %}
-
 {% block body %}
 <p>
-  welcome to toffee dns. we have a simple goal: we want to make it easier for people to host their own websites and services.
+  At toffee dns, we have a simple goal: to make it easier for developers to host
+  their own websites and services. We hope to achieve this by providing good,
+  cheap dynamic dns services.
 </p>
 
-<h2>background</h2>
+<h2>Background</h2>
 
 <p>
-  historically, the problem of resolving dns entries to a residential ip address
-  has been solved by purchasing a static ip from your isp. you pay your isp a
-  premium, and they give you an ip address that never changes. then you tell the
-  registrar you purchased your domain name from about your ip address, and
+  Historically, the problem of resolving DNS entries to a residential IP address
+  has been solved by purchasing a static IP from your ISP. You pay your ISP a
+  premium, and they give you an IP address that never changes. Then you tell the
+  registrar you purchased your domain name from about your IP address, and
   everything works.
 </p>
 
 <p>
-  this all works fine, but it's increasingly difficult and expensive to get a
-  static ip address from your isp. the solution that many people today have
-  opted into is purchasing a virtual machine on a vps like slicehost, or
-  linode. this gives you the flexibility of having full control over a linux
-  machine, and also gives you a public ip address and dns. this is great, but
-  it's also expensive; typically these services cost at least $20 per year,
-  which is much more than what you probably paid your registrar for your domain
-  name.
+  This all works fine, but it's increasingly difficult and expensive to get a
+  static IP address from big ISPs. The solution that many people today have
+  opted into is purchasing a virtual machine on a VPS like Slicehost, or
+  Linode. A VPS gives you the flexibility of having full control over a linux
+  machine, and also gives you a public IP address and DNS. This is great, but
+  it's also expensive; typically these services cost at least $20 per month,
+  which is an order of magnitude more expensive than what you probably paid your
+  registrar for your domain name.
 </p>
 
-<h2>the solution</h2>
+<h2>The Solution</h2>
 <p>
-  what many developers really need is a simple dns service, that will always
-  point to their home ip address, even if that address is not static. most isps
-  hand out ips based on dhcp leases that last for a very long time, typically
-  between twelve hours and a week. furthermore, your router knows all of the
-  details of this dhcp lease; this means that your router knows exactly when the
-  dhcp lease is going to expire, and when your ip address will change. if you
-  have a smart router, it will update your dynamic dns data on demand as your ip
-  address changes.
+  What many developers really need is a simple DNS service, that will always
+  point to their home IP address, even if that address is not static. Most ISPs
+  hand out IPs based on DHCP leases that last for a very long time, typically
+  between twelve hours and a week. Furthermore, your router knows all of the
+  details of this DHCP lease; this means that your router knows exactly when the
+  DHCP lease is going to expire, and when your IP address will change. if you
+  have a <a href="http://www.polarcloud.com/tomato">smart router</a>, it will
+  update your dynamic DNS data on demand as your IP address changes. The DNS for
+  your IP will always be correct, subject to external caching.
 </p>
-<p>for a dns service with a two minute ttl (toffee's default), this means
-  that your <q>downtime</q> will range from 0.28% (for a 12 hour dhcp lease) to
-  0.02% (for a one week dhcp lease).
+<p>
+  For a DNS service with a two minute TTL (toffee's default), this means that
+  the amount of time DNS entries may be cached incorrectly will range from 0.28%
+  (for a 12 hour DHCP lease) to 0.02% (for a one week DHCP lease). This is
+  perfectable acceptable for many use cases.
 </p>
 
-<h2>sign up</h2>
+<h2>Sign Up</h2>
 <p>
-  there's a $10 lifetime fee to become a member. here's what you get:
+  There's a $10 lifetime fee to become a member. Here's what you get:
   <ul>
 	<li>unlimited domains</li>
 	<li>one million dns resolutions per month</li>
   </ul>
   <br>
-  if this sounds enticing to you, <a href="/signup">sign up</a>.
+  If this sounds enticing to you, <a href="/signup">sign up</a>.
 </p>
 
-<h2>technical details</h2>
+<h2>Technical Details</h2>
 <p>
-  if you're interested in learning more about the technical details of toffee, <a href="/technical_details">click here</a> to learn more.
+  If you're interested in learning more about the technical details of
+  toffee, <a href="/technical_details">click here</a> to learn more.
 </p>
-
-
-
-<!--
-<h2>about us</h2>
-<p>
-  we provide this service to developers because we want to encourage an open
-  web, where people can freely and easily put up content. the fact that
-  something like this doesn't already exist is a bit shocking, so we set out to
-  fix it.
-</p>
--->
 {% end %}
