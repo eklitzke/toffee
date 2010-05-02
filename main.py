@@ -8,12 +8,14 @@ import tornado.ioloop
 import tornado.web
 
 import toffee
+import toffee.named
 
 if __name__ == '__main__':
     parser = optparse.OptionParser()
     parser.add_option('-p', '--port', dest='port', default=0, type='int', help='the port to listen on')
     parser.add_option('-t', '--threads', dest='threads', default=4, type='int', help='how many threads to spawn')
     parser.add_option('-c', '--config', dest='config', default='config.yaml', help='Configuration file to use')
+    parser.add_option('--memory', dest='memory_db', action='store_true', default=False, help='Load a SQLite database from memory')
     opts, args = parser.parse_args()
 
     settings = {}
@@ -22,8 +24,15 @@ if __name__ == '__main__':
     else:
         print >> sys.stderr, 'no config file specified (or path did not exist), exiting'
         sys.exit(1)
-
     settings.update(config)
+
+    # Set up the database. You may pass in --memory as a command line option to
+    # load an empty SQLite database into memory.
+    if opts.memory_db:
+        toffee.named.bind("sqlite:///:memory:", echo=settings['debug'])
+    else:
+        toffee.named.bind(settings['sqlite_db'], echo=settings['debug'])
+
     application = tornado.web.Application(toffee.routes, **settings)
 
     if opts.port:

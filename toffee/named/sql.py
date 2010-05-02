@@ -4,8 +4,12 @@ import sqlalchemy
 import toffee._dns as dns
 from toffee.named.tables import *
 
-bind_engine(sqlalchemy.create_engine("sqlite:///:memory:", echo=True))
-session = Session()
+session = None
+
+def bind(path, echo=False):
+    global session
+    bind_engine(sqlalchemy.create_engine(path, echo=echo))
+    session = Session()
 
 def txn(func):
     def inner(cls, name, *args, **kwargs):
@@ -94,3 +98,12 @@ class SOA(DNSResource):
         rdata, serial = dns.SOA.increment_serial(record.rdata)
         record.rdata = rdata
         return serial
+
+def fetch_records_for_base_name(name):
+    name = DNSResource.to_base_name(name)
+    assert name[-1] == '.'
+    assert name[0] != '.'
+
+    return session.query(Zone).filter(sqlalchemy.or_(
+            Zone.name == name,
+            Zone.name.like('%.' + name))).order_by(Zone.id).all()

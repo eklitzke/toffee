@@ -18,3 +18,4 @@ class RequestHandler(tornado.web.RequestHandler):
         routes.append((regex, cls))
 
 import toffee.view.static_page
+import toffee.view.edit_dns
