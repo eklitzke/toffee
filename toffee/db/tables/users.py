@@ -30,7 +30,7 @@ class Users(Base):
     def new(cls, email, password):
         email = email.lower()
         salt = bytes(os.urandom(SALT_LEN))
-        password = hashlib.sha1(salt + password).hexdigest()
+        password = hashlib.sha1(salt + bytes(password)).hexdigest()
         with session() as s:
             obj = cls(email=email, password=password, salt=buffer(salt))
             s.add(obj)
@@ -43,7 +43,7 @@ class Users(Base):
             if user is None:
                 raise NoSuchEmail
 
-            hashed_pass = hashlib.sha1(bytes(user.salt) + password).hexdigest()
+            hashed_pass = hashlib.sha1(bytes(user.salt) + bytes(password)).hexdigest()
             if hashed_pass != user.password:
                 raise BadPassword
         return user

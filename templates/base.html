@@ -13,11 +13,25 @@
 	  <ul>
 		<li><a href="/">home</a></li>
 		<li>dashboard</li>
+        {% if current_user %}
+		<li><a href="/logout">logout</a></li>
+        {% else %}
 		<li><a href="/login">sign up</a></li>
+        {% end %}
 	  </ul>
 	  </span>
 	</div> <!-- hd -->
 	<div id="bd">
+      {% if error_msg %}
+      <div class="error_msg">
+        {{error_msg}}
+      </div>
+      {% end %}
+      {% if info_msg %}
+      <div class="info_msg">
+        {{info_msg}}
+      </div>
+      {% end %}
 	{% block body %}
 	{% end %}
 	</div> <!-- bd -->

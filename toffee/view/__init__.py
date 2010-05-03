@@ -6,10 +6,30 @@ class RequestHandler(tornado.web.RequestHandler):
 
     def prepare(self):
         super(RequestHandler, self).prepare()
+        self.info_msg = None
+        self.error_msg = None
         self.env = {}
+        self.env['info_msg'] = self.get_cookie('info_msg')
+        self.env['error_msg'] = self.get_cookie('error_msg')
         self.env['today'] = datetime.date.today()
+
+    def update_info_cookies(self):
+        if self.info_msg:
+            self.set_cookie('info_msg', self.info_msg)
+        elif self.env['info_msg']:
+            self.clear_cookie('info_msg')
+
+        if self.error_msg:
+            self.set_cookie('error_msg', self.error_msg)
+        elif self.env['error_msg']:
+            self.clear_cookie('error_msg')
+
+    def redirect(self, url, permanent=False):
+        self.update_info_cookies()
+        super(RequestHandler, self).redirect(url, permanent=permanent)
     
     def render(self, template_name, **kwargs):
+        self.update_info_cookies()
         self.env.update(kwargs)
         return super(RequestHandler, self).render(template_name, **self.env)
 
