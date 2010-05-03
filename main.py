@@ -2,13 +2,15 @@ import sys
 import os
 import optparse
 import yaml
+import sqlalchemy
 
 import tornado.httpserver
 import tornado.ioloop
 import tornado.web
 
 import toffee
-import toffee.named
+import toffee.db
+import toffee.uimodules
 
 if __name__ == '__main__':
     parser = optparse.OptionParser()
@@ -25,13 +27,15 @@ if __name__ == '__main__':
         print >> sys.stderr, 'no config file specified (or path did not exist), exiting'
         sys.exit(1)
     settings.update(config)
+    settings['ui_modules'] = toffee.uimodules.all_uimodules
 
     # Set up the database. You may pass in --memory as a command line option to
     # load an empty SQLite database into memory.
     if opts.memory_db:
-        toffee.named.bind("sqlite:///:memory:", echo=settings['debug'])
+        engine = sqlalchemy.create_engine('sqlite:///:memory:', echo=settings['debug'])
     else:
-        toffee.named.bind(settings['sqlite_db'], echo=settings['debug'])
+        engine = sqlalchemy.create_engine(settings['sqlite_db'], echo=settings['debug'])
+    toffee.db.bind_engine(engine)
 
     application = tornado.web.Application(toffee.routes, **settings)
 

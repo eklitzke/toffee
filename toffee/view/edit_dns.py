@@ -15,9 +15,9 @@ class DNSEditor(RequestHandler):
     def group_records(self, records):
         result = { 'soa': None, 'a': []}
         for record in records:
-            if record.qtype == named.A.qtype:
+            if record.rr == 'A':
                 result['a'].append(record)
-            elif record.qtype == named.SOA.qtype:
+            elif record.rr == 'SOA':
                 result['soa'] = record
         return result
 
@@ -27,6 +27,6 @@ class DNSEditor(RequestHandler):
             self.redirect('/edit/' + base_name[:-1])
         records = named.fetch_records_for_base_name(base_name)
         self.env['records'] = self.group_records(records)
-        self.render('home.html')
+        self.render('edit_dns.html')
 
 DNSEditor.add_route('/edit/([\w.]+)')

@@ -1,0 +1,23 @@
+<div class="a_records">
+<h2>A Records</h2>
+<table class="dsn_record">
+  <th>
+    <td>Name</td>
+    <td>Address</td>
+  </th>
+  {% if records %}
+  {% for record in records %}
+  <tr>
+    <td>{{ record.name }}</td>
+    <td>{{ record.dns.address }}</td>
+  </tr>
+  {% end %}
+  {% else %}
+  <tr>
+    <td colspan="2">
+      (no A records defined)
+    </td>
+  </tr>
+  {% end %}
+</table>
+</div>

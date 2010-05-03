@@ -104,6 +104,7 @@ def fetch_records_for_base_name(name):
     assert name[-1] == '.'
     assert name[0] != '.'
 
-    return session.query(Zone).filter(sqlalchemy.or_(
+    results = session.query(Zone).filter(sqlalchemy.or_(
             Zone.name == name,
             Zone.name.like('%.' + name))).order_by(Zone.id).all()
+    return [r.to_record() for r in results]

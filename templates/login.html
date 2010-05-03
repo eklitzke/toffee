@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block body %}
+<form id="signup_form" method="POST" action="/signup" style="float: left; max-width: 400px;">
+  <fieldset>
+    <legend>Signup</legend>
+    <label for="s_email">E-mail: <input type="text" id="s_email" name="email"></label> <br>
+    <label for="s_password">Password: <input type="password" id="s_password" name="password"></label> <br>
+    <label for="s_password_confirm">Password (confirm): <input type="s_password" id="password_confirm" name="password_confirm"></label> <br>
+    <input type="submit" value="Sign Up">
+  </fieldset>
+</form>
+
+<form id="login_form" method="POST" action="/login" style="float: left; padding-left: 50px;">
+  <fieldset>
+    <legend>Login</legend>
+    <label for="l_email">E-mail: <input type="text" id="l_email" name="email"></label> <br>
+    <label for="l_password">Password: <input type="password" id="l_password" name="password"></label> <br>
+    <input type="submit" value="Log In">
+  </fieldset>
+</form>
+{% end %}

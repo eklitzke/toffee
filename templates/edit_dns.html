@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+
+{% block body %}
+<p>
+  You've defined the following DNS records.
+</p>
+{{ modules.ARecords(records['a']) }}
+{% end %}

@@ -15,4 +15,9 @@ em { font-style: italic; }
 
 #hd { background: #f8f8f0; margin: 0; padding: 0 0 0 0.5em; border-bottom: 1px solid black; }
 #bd { padding: 0 0.5em 0 0.5em; }
-#ft { font-size: 77%; padding: 1em 0 0 0.5em; }
+#ft { font-size: 77%; padding: 1em 0 0 0.5em; clear: both; }
+
+fieldset { border: 1px solid black; padding: 0 10px 10px 10px; }
+legend { margin-left: 1em; font-weight: bold; }
+
+.dns_record td { font-style: italic; }

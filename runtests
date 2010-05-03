@@ -1,0 +1,2 @@
+#!/bin/sh
+python -m qa -c single -v -m toffee.tests
