@@ -1,6 +1,18 @@
 import datetime
 import tornado.web
+import tornado.escape
+
 routes = []
+
+def safe_escape(s):
+    if s is not None:
+        return tornado.escape.url_escape(s)
+    return None
+
+def safe_unescape(s):
+    if s is not None:
+        return tornado.escape.url_unescape(s)
+    return None
 
 class RequestHandler(tornado.web.RequestHandler):
 
@@ -9,18 +21,18 @@ class RequestHandler(tornado.web.RequestHandler):
         self.info_msg = None
         self.error_msg = None
         self.env = {}
-        self.env['info_msg'] = self.get_cookie('info_msg')
-        self.env['error_msg'] = self.get_cookie('error_msg')
+        self.env['info_msg'] = safe_unescape(self.get_cookie('info_msg'))
+        self.env['error_msg'] = safe_unescape(self.get_cookie('error_msg'))
         self.env['today'] = datetime.date.today()
 
     def update_info_cookies(self):
         if self.info_msg:
-            self.set_cookie('info_msg', self.info_msg)
+            self.set_cookie('info_msg', safe_escape(self.info_msg))
         elif self.env['info_msg']:
             self.clear_cookie('info_msg')
 
         if self.error_msg:
-            self.set_cookie('error_msg', self.error_msg)
+            self.set_cookie('error_msg', safe_escape(self.error_msg))
         elif self.env['error_msg']:
             self.clear_cookie('error_msg')
 
@@ -40,8 +52,10 @@ class RequestHandler(tornado.web.RequestHandler):
         if not cookie:
             return
 
+        print 'cookie: %r' % (cookie,)
+
         def clear_and_redirect():
-            selc.clear_cookie('user')
+            self.clear_cookie('user')
             self.redirect(self.request.uri, permanent=False)
 
         ip, user_id = cookie.split(' ', 1)
@@ -68,5 +82,6 @@ class RequestHandler(tornado.web.RequestHandler):
 
 import toffee.view.edit_dns
 import toffee.view.login
+import toffee.view.logout
 import toffee.view.signup
 import toffee.view.static_page

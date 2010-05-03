@@ -21,3 +21,4 @@ fieldset { border: 1px solid black; padding: 0 10px 10px 10px; }
 legend { margin-left: 1em; font-weight: bold; }
 
 .dns_record td { font-style: italic; }
+.error_msg { border: 2px solid #df1111; background: #ffe3e3; margin: 5px; }

@@ -2,3 +2,4 @@ debug: true
 template_path: '/home/evan/code/toffee/templates'
 static_path: '/home/evan/code/toffee/static'
 cookie_secret: 'AxdorZ9oQyKF0npx4QdEgPvNgitwJ0fOspePSEkx1kI='
+sqlite_db: 'sqlite:///toffee.db'
