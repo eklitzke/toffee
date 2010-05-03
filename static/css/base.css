@@ -5,11 +5,18 @@ h1 { font-size: 138.5%; font-weight: bold; }
 h2 { font-size: 123.1%; font-weight: bold; padding-top: 1em; }
 p { padding-top: 0.5em; }
 
+li:before { content: "\2022\00a0"; }
+li { margin-left: 0.5em; }
+
+#hd a { text-decoration: none; }
+
 #hd_bar { display: inline; }
 #hd_bar ul, #hd_bar li {
 	display: inline;
 	margin: 0 0 0 10px;
 }
+#hd_bar li:before { content: ""; }
+
 a { text-decoration: underline; color: black; }
 em { font-style: italic; }
 
@@ -22,3 +29,4 @@ legend { margin-left: 1em; font-weight: bold; }
 
 .dns_record td { font-style: italic; }
 .error_msg { border: 2px solid #df1111; background: #ffe3e3; margin: 5px; }
+.info_msg { border: 2px solid #e7f03c; background: #fcffcd; margin: 5px; }

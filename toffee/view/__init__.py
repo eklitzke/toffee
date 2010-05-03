@@ -80,6 +80,7 @@ class RequestHandler(tornado.web.RequestHandler):
     def add_route(cls, regex):
         routes.append((regex, cls))
 
+import toffee.view.dashboard
 import toffee.view.edit_dns
 import toffee.view.login
 import toffee.view.logout

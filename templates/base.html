@@ -3,20 +3,19 @@
   <head>
     <title>{%block title%}toffee dns{% end %}</title>
 	<link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon" />
-    <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/combo?3.1.0/build/cssreset/reset-min.css&3.1.0/build/cssfonts/fonts-min.css"> 
+    <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/combo?3.1.0/build/cssreset/reset-min.css&amp;3.1.0/build/cssfonts/fonts-min.css"> 
     <link rel="stylesheet" type="text/css" href="{{static_url('css/base.css')}}">
   </head>
   <body>
 	<div id="hd">
-	  <h1 class="inline">{% block header %}toffee: dns for developers{% end %}</h1>
+	  <h1 class="inline"><a href="/">{% block header %}toffee: dns for developers{% end %}</a></h1>
 	  <span id="hd_bar">
 	  <ul>
-		<li><a href="/">home</a></li>
-		<li>dashboard</li>
         {% if current_user %}
+		<li><a href="/dashboard">dashboard</a></li>
 		<li><a href="/logout">logout</a></li>
         {% else %}
-		<li><a href="/login">sign up</a></li>
+		<li><a href="/login">login</a></li>
         {% end %}
 	  </ul>
 	  </span>

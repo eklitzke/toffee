@@ -1,3 +1,6 @@
 Dependencies:
  * tornado
  * python-yaml
+ * python-dnspython
+ * python-sqlalchemy
+ * python-simplejson
